@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo">
+       <div id="authBtn"></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Unlimited movies, TV shows and more</h1>
+        <p>Watch anywhere. Cancel anytime.</p>
+        <div class="email-form">
+            <input type="email" placeholder="Email address">
+            <button>Get Started</button>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features">
+
+        <div class="feature-item">
+            <div class="feature-text">
+                <h2>Enjoy on your TV</h2>
+                <p>Watch on Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</p>
+            </div>
+            <div class="feature-img">
+                <img src="https://picsum.photos/500/300?random=10" alt="TV">
+            </div>
+        </div>
+
+        <div class="feature-item reverse">
+            <div class="feature-text">
+                <h2>Download your shows to watch offline</h2>
+                <p>Save your favourites easily and always have something to watch.</p>
+            </div>
+            <div class="feature-img">
+                <img src="https://picsum.photos/500/300?random=11" alt="Mobile">
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-text">
+                <h2>Watch everywhere</h2>
+                <p>Stream unlimited movies and TV shows on your phone, tablet, laptop and TV.</p>
+            </div>
+            <div class="feature-img">
+                <img src="https://picsum.photos/500/300?random=12" alt="Devices">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Movies Section -->
+    <div class="movies-section">
+        <h2>Trending Now</h2>
+        <div class="movies-grid">
+            <div class="movie-card">
+                <img src="https://picsum.photos/200/300?random=1" alt="Movie 1">
+                <div class="movie-overlay">
+                    <h3>Movie Title</h3>
+                    <p>⭐ 8.5</p>
+                    <button>▶ Play</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://picsum.photos/200/300?random=2" alt="Movie 2">
+                <div class="movie-overlay">
+                    <h3>Movie Title</h3>
+                    <p>⭐ 7.9</p>
+                    <button>▶ Play</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://picsum.photos/200/300?random=3" alt="Movie 3">
+                <div class="movie-overlay">
+                    <h3>Movie Title</h3>
+                    <p>⭐ 9.1</p>
+                    <button>▶ Play</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://picsum.photos/200/300?random=4" alt="Movie 4">
+                <div class="movie-overlay">
+                    <h3>Movie Title</h3>
+                    <p>⭐ 8.2</p>
+                    <button>▶ Play</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://picsum.photos/200/300?random=5" alt="Movie 5">
+                <div class="movie-overlay">
+                    <h3>Movie Title</h3>
+                    <p>⭐ 7.5</p>
+                    <button>▶ Play</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://picsum.photos/200/300?random=6" alt="Movie 6">
+                <div class="movie-overlay">
+                    <h3>Movie Title</h3>
+                    <p>⭐ 8.8</p>
+                    <button>▶ Play</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">What is Netflix? <span>+</span></div>
+            <div class="faq-answer">Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries and more.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">How much does Netflix cost? <span>+</span></div>
+            <div class="faq-answer">Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">Where can I watch? <span>+</span></div>
+            <div class="faq-answer">Watch anywhere, anytime. Sign in with your Netflix account to watch instantly on the web or on any device.</div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Questions? Call <a href="#">000-800-919-1694</a></p>
+        <div class="footer-links">
+            <a href="#">FAQ</a>
+            <a href="#">Help Centre</a>
+            <a href="#">Account</a>
+            <a href="#">Media Centre</a>
+            <a href="#">Privacy</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <p>Netflix India</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Auth check
+        function handleAuth() {
+            const user = localStorage.getItem('netlfix_user');
+            if(user) {
+                localStorage.removeItem('netlfix_user');
+                location.reload();
+            } else {
+                window.location.href = 'signin.html';
+            }
+        }
+
+        // Check if user logged in
+       window.onload = function() {
+    const user = localStorage.getItem('netlfix_user');
+    const btn = document.getElementById('authBtn');
+    if(user) {
+        btn.innerHTML = '<button class="sign-in-btn" onclick="handleAuth()">👤 ' + user.split('@')[0] + '</button>';
+    }
+}
+    </script>
+</body>
+</html>

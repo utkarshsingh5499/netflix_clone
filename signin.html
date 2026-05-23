@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Sign In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo">
+    </nav>
+
+    <div class="signin-container">
+        <div class="signin-box">
+            <h1>Sign In</h1>
+            <input type="email" id="email" placeholder="Email or phone number">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="signIn()">Sign In</button>
+            <p class="signin-footer">New to Netflix? <a href="index.html">Sign up now</a></p>
+        </div>
+    </div>
+
+    <script>
+       function signIn() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    if(email && password) {
+        window.location.href = 'index.html';
+    } else {
+        alert('Please enter email and password!');
+    }
+}
+    </script>
+</body>
+</html>
