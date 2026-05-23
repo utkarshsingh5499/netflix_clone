@@ -150,20 +150,17 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        function handleAuth() {
-            sessionStorage.removeItem('netlfix_user');
-            window.location.href = 'signin.html';
-        }
 
-        window.onload = function() {
+<script src="script.js"></script>
+<script>
     function getCookie(name) {
-        const cookies = document.cookie.split(';');
-        for(let c of cookies) {
-            c = c.trim();
-            if(c.startsWith(name + '=')) return c.substring(name.length + 1);
-        }
-        return null;
+        let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        return match ? match[2] : null;
+    }
+
+    function handleAuth() {
+        document.cookie = "netlfix_user=; max-age=0; path=/";
+        window.location.href = 'signin.html';
     }
 
     const user = getCookie('netlfix_user');
@@ -171,18 +168,14 @@
 
     if(!user) {
         window.location.href = 'signin.html';
-        return;
+    } else {
+        if(btn) {
+            btn.innerHTML = '<button class="sign-in-btn" onclick="handleAuth()">👤 ' + user.split('@')[0] + '</button>';
+        }
     }
+</script>
 
-    if(btn) {
-        btn.innerHTML = '<button class="sign-in-btn" onclick="handleAuth()">👤 ' + user.split('@')[0] + '</button>';
-    }
-}
 
-function handleAuth() {
-    document.cookie = "netlfix_user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    window.location.href = 'signin.html';
-}
     </script>
 </body>
 </html>
