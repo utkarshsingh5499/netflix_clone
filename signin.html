@@ -23,10 +23,11 @@
     </div>
 
     <script>
-       function signIn() {
+      function signIn() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     if(email && password) {
+        sessionStorage.setItem('netlfix_user', email);
         window.location.href = 'index.html';
     } else {
         alert('Please enter email and password!');

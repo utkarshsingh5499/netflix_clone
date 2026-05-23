@@ -11,7 +11,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo">
-       <div id="authBtn"></div>
+        <div id="authBtn"></div>
     </nav>
 
     <!-- Hero Section -->
@@ -151,39 +151,24 @@
 
     <script src="script.js"></script>
     <script>
-        // Auth check
         function handleAuth() {
-            const user = localStorage.getItem('netlfix_user');
-            if(user) {
-                localStorage.removeItem('netlfix_user');
-                location.reload();
-            } else {
-                window.location.href = 'signin.html';
-            }
+            sessionStorage.removeItem('netlfix_user');
+            window.location.href = 'signin.html';
         }
 
-        // Check if user logged in
-       window.onload = function() {
-    const user = localStorage.getItem('netlfix_user');
-    const btn = document.getElementById('authBtn');
-    if(user) {
-        btn.innerHTML = '<button class="sign-in-btn" onclick="handleAuth()">👤 ' + user.split('@')[0] + '</button>';
-    }
-}
-window.onload = function() {
-    const user = localStorage.getItem('netlfix_user');
-    const btn = document.getElementById('authBtn');
-    
-    // Agar user logged in nahi hai toh signin page pe bhejo
-    if(!user) {
-        window.location.href = 'signin.html';
-        return;
-    }
-    
-    if(btn) {
-        btn.innerHTML = '<button class="sign-in-btn" onclick="handleAuth()">👤 ' + user.split('@')[0] + '</button>';
-    }
-}
+        window.onload = function() {
+            const user = sessionStorage.getItem('netlfix_user');
+            const btn = document.getElementById('authBtn');
+
+            if(!user) {
+                window.location.href = 'signin.html';
+                return;
+            }
+
+            if(btn) {
+                btn.innerHTML = '<button class="sign-in-btn" onclick="handleAuth()">👤 ' + user.split('@')[0] + '</button>';
+            }
+        }
     </script>
 </body>
 </html>
