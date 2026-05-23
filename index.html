@@ -157,18 +157,32 @@
         }
 
         window.onload = function() {
-            const user = sessionStorage.getItem('netlfix_user');
-            const btn = document.getElementById('authBtn');
-
-            if(!user) {
-                window.location.href = 'signin.html';
-                return;
-            }
-
-            if(btn) {
-                btn.innerHTML = '<button class="sign-in-btn" onclick="handleAuth()">👤 ' + user.split('@')[0] + '</button>';
-            }
+    function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for(let c of cookies) {
+            c = c.trim();
+            if(c.startsWith(name + '=')) return c.substring(name.length + 1);
         }
+        return null;
+    }
+
+    const user = getCookie('netlfix_user');
+    const btn = document.getElementById('authBtn');
+
+    if(!user) {
+        window.location.href = 'signin.html';
+        return;
+    }
+
+    if(btn) {
+        btn.innerHTML = '<button class="sign-in-btn" onclick="handleAuth()">👤 ' + user.split('@')[0] + '</button>';
+    }
+}
+
+function handleAuth() {
+    document.cookie = "netlfix_user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location.href = 'signin.html';
+}
     </script>
 </body>
 </html>
