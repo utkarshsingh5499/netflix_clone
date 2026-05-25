@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix - Sign In</title>
+    <meta name="description" content="Sign in to Netflix Clone - Watch movies and TV shows">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Netflix Clone - Sign In</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,14 +19,13 @@
         <div class="signin-box">
             <h1>Sign In</h1>
 
-            <input type="email" id="email" 
-                   value="utkarsh.singh.5499@gmail.com" 
+            <input type="email" id="email"
+                   value="utkarsh.singh.5499@gmail.com"
                    readonly
                    style="cursor:not-allowed; opacity:0.7;">
 
-            <input type="password" id="password" 
-                   value="12345678" 
-                   readonly
+            <input type="password" id="password"
+                   id="password"
                    style="cursor:not-allowed; opacity:0.7;">
 
             <button onclick="signIn()">Sign In</button>
@@ -32,11 +34,17 @@
     </div>
 
     <script>
+        // Cross-browser fix — password field value set via JS
+        window.onload = function() {
+            document.getElementById('password').value = '12345678';
+            document.getElementById('password').setAttribute('readonly', true);
+        }
+
         function signIn() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             if(email && password) {
-                document.cookie = "netlfix_user=" + email + "; path=/";
+                document.cookie = "netlfix_user=" + email + "; path=/; SameSite=Lax";
                 window.location.href = 'index.html';
             } else {
                 alert('Please enter email and password!');
