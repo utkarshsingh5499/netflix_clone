@@ -15,24 +15,33 @@
     <div class="signin-container">
         <div class="signin-box">
             <h1>Sign In</h1>
-            <input type="email" id="email" placeholder="Email or phone number">
-            <input type="password" id="password" placeholder="Password">
+
+            <input type="email" id="email" 
+                   value="utkarsh.singh.5499@gmail.com" 
+                   readonly
+                   style="cursor:not-allowed; opacity:0.7;">
+
+            <input type="password" id="password" 
+                   value="12345678" 
+                   readonly
+                   style="cursor:not-allowed; opacity:0.7;">
+
             <button onclick="signIn()">Sign In</button>
             <p class="signin-footer">New to Netflix? <a href="index.html">Sign up now</a></p>
         </div>
     </div>
 
     <script>
-     function signIn() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    if(email && password) {
-        document.cookie = "netlfix_user=" + email + "; path=/";
-        window.location.href = 'index.html';
-    } else {
-        alert('Please enter email and password!');
-    }
-}
+        function signIn() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            if(email && password) {
+                document.cookie = "netlfix_user=" + email + "; path=/";
+                window.location.href = 'index.html';
+            } else {
+                alert('Please enter email and password!');
+            }
+        }
     </script>
 </body>
 </html>
